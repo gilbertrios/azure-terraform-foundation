@@ -12,6 +12,6 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "gil-test-rg"
+  name     = "gil-test-rename-rg"
   location = "East US"
 }
