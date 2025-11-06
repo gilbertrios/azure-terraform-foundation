@@ -28,7 +28,7 @@ jobs:
     - name: Terraform Plan
       working-directory: ./environments/${{ matrix.environment }}
       run: |
-        terraform init -backend-config=backend-configs/${{ matrix.environment }}.hcl
+        terraform init -backend-config=./backend-configs/${{ matrix.environment }}.hcl
         terraform plan -out=tfplan
     
     - name: Comment PR
@@ -60,5 +60,5 @@ jobs:
     - name: Terraform Apply
       working-directory: ./environments/${{ matrix.environment }}
       run: |
-        terraform init -backend-config=backend-configs/${{ matrix.environment }}.hcl
+        terraform init -backend-config=./backend-configs/${{ matrix.environment }}.hcl
         terraform apply -auto-approve
