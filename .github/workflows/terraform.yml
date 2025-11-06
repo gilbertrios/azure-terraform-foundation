@@ -28,7 +28,7 @@ jobs:
     - name: Terraform Plan
       working-directory: ./environments/${{ matrix.environment }}
       run: |
-        terraform init -backend-config=./backend-configs/${{ matrix.environment }}.hcl
+        terraform init -backend-config=${{ github.workspace }}/backend-configs/${{ matrix.environment }}.hcl
         terraform plan -out=tfplan
     
     - name: Comment PR
@@ -36,7 +36,7 @@ jobs:
       with:
         script: |
           const fs = require('fs');
-          const plan = fs.readFileSync('./environments/${{ matrix.environment }}/tfplan', 'utf8');
+          const plan = fs.readFileSync('./tfplan', 'utf8');
           github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
@@ -60,5 +60,5 @@ jobs:
     - name: Terraform Apply
       working-directory: ./environments/${{ matrix.environment }}
       run: |
-        terraform init -backend-config=./backend-configs/${{ matrix.environment }}.hcl
+        terraform init -backend-config=${{ github.workspace }}/backend-configs/${{ matrix.environment }}.hcl
         terraform apply -auto-approve
