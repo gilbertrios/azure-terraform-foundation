@@ -7,6 +7,10 @@ on:
     branches: [main]
     paths: ['environments/**']
 
+permissions:
+  contents: read        # Read repository content
+  pull-requests: write  # Comment on PRs
+  issues: write        # Comment on issues (PRs are issues)    
 env:
   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
   ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -26,23 +30,37 @@ jobs:
     - uses: hashicorp/setup-terraform@v3
     
     - name: Terraform Plan
+      id: plan
       working-directory: ./environments/${{ matrix.environment }}
       run: |
         terraform init -backend-config=${{ github.workspace }}/backend-configs/${{ matrix.environment }}.hcl
-        terraform plan -out=tfplan
+        terraform plan -out=tfplan -no-color
+        terraform show -no-color tfplan > plan-output.txt
     
     - name: Comment PR
       uses: actions/github-script@v7
+      if: github.event_name == 'pull_request'
       with:
         script: |
           const fs = require('fs');
-          const plan = fs.readFileSync('./tfplan', 'utf8');
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: `## Terraform Plan for \`${{ matrix.environment }}\` environment\n\`\`\`\n${plan}\n\`\`\``
-          });
+          try {
+            const plan = fs.readFileSync('./environments/${{ matrix.environment }}/plan-output.txt', 'utf8');
+            const truncatedPlan = plan.length > 65000 ? plan.substring(0, 65000) + '\n... (truncated)' : plan;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Terraform Plan for \`${{ matrix.environment }}\` environment\n\`\`\`terraform\n${truncatedPlan}\n\`\`\``
+            });
+          } catch (error) {
+            console.log('Error reading plan file:', error.message);
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Terraform Plan for \`${{ matrix.environment }}\` environment\n\`\`\`\nError reading plan output: ${error.message}\n\`\`\``
+            });
+          }
 
   apply:
     if: github.ref == 'refs/heads/main'
