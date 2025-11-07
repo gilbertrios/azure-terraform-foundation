@@ -23,5 +23,6 @@ resource "azurerm_resource_group" "example" {
 terraform {
   backend "azurerm" {
     # Configuration will be provided via -backend-config
+    
   }
 }
