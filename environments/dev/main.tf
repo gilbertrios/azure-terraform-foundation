@@ -11,13 +11,20 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "example" {
-  name     = var.resource_group_name
-  location = var.location
+module "resource_group" {
+  source = "../../modules/resource-group"
   
-  tags = {
-    Environment = var.environment
+  name         = var.resource_group_name
+  location     = var.location
+  environment  = var.environment
+  project_name = "hello-world"
+  
+  additional_tags = {
+    Owner      = "DevTeam"
+    CostCenter = "Engineering"
   }
+  
+  enable_lock = false  # Set to true for production
 }
 
 terraform {
