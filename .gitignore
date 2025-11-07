@@ -1,5 +1,25 @@
+# Terraform
 .terraform/
 .terraform.lock.hcl
 *.tfstate
 *.tfstate.*
-*.tfvars
+*.tfstate.backup
+
+# Terraform variables with secrets
+*secrets*.tfvars
+*local*.tfvars
+*.tfvars.local
+
+# Allow non-sensitive tfvars
+!terraform.tfvars
+!**/terraform.tfvars
+!environments/*/*.tfvars
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE and OS
+.vscode/
+.DS_Store
