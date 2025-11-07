@@ -17,7 +17,7 @@ module "resource_group" {
   name         = var.resource_group_name
   location     = var.location
   environment  = var.environment
-  project_name = "hello-world"
+  project_name = "azure-terraform-foundation"
   
   additional_tags = {
     Owner      = "DevTeam"
