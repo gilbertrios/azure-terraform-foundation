@@ -17,7 +17,7 @@ variable "environment" {
 variable "project_name" {
   description = "Name of the project"
   type        = string
-  default     = "hello-world"
+  default     = "azure-terraform-foundation"
 }
 
 variable "additional_tags" {

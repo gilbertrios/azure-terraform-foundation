@@ -1,4 +1,4 @@
-# Hello World - Azure Infrastructure
+# Azure Terraform Foundation
 
 A sandbox repository for creating and managing Azure infrastructure using Terraform with automated CI/CD pipelines.
 
@@ -13,7 +13,7 @@ This repository demonstrates Infrastructure as Code (IaC) best practices using:
 ## 📁 Repository Structure
 
 ```
-hello-world/
+azure-terraform-foundation/
 ├── .github/workflows/         # CI/CD pipeline definitions
 │   └── terraform.yml          # Main Terraform workflow
 ├── backend-configs/           # Terraform backend configurations
@@ -53,8 +53,8 @@ hello-world/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/gilbertrios/hello-world.git
-   cd hello-world
+   git clone https://github.com/gilbertrios/azure-terraform-foundation.git
+   cd azure-terraform-foundation
    ```
 
 2. **Authenticate with Azure**
@@ -146,7 +146,7 @@ module "resource_group" {
   name         = "rg-myapp-dev"
   location     = "East US"
   environment  = "dev"
-  project_name = "hello-world"
+  project_name = "azure-terraform-foundation"
   
   additional_tags = {
     Owner      = "DevTeam"
@@ -269,7 +269,7 @@ gh run watch
 ## 📞 Support
 
 For questions or issues:
-1. Check existing [Issues](https://github.com/gilbertrios/hello-world/issues)
+1. Check existing [Issues](https://github.com/gilbertrios/azure-terraform-foundation/issues)
 2. Create a new issue with detailed description
 3. Contact the infrastructure team
 

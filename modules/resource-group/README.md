@@ -43,7 +43,7 @@ module "resource_group" {
 | name | Name of the resource group | `string` | n/a | yes |
 | location | Azure region | `string` | `"East US"` | no |
 | environment | Environment name | `string` | n/a | yes |
-| project_name | Name of the project | `string` | `"hello-world"` | no |
+| project_name | Name of the project | `string` | `"azure-terraform-foundation"` | no |
 | additional_tags | Additional tags | `map(string)` | `{}` | no |
 | enable_lock | Enable resource lock | `bool` | `false` | no |
 
