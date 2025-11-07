@@ -378,8 +378,8 @@ gh run watch
 ### 🌐 Connect With Me
 Interested in Infrastructure as Code, Azure, or DevOps? Let's connect!
 
-- 💼 **LinkedIn**: [Connect with me](https://linkedin.com/in/gilbert-rios)
-- 📧 **Email**: Questions about this project? Reach out!
+- 💼 **LinkedIn**: [Connect with me](https://linkedin.com/in/gilbert-rios-22586918)
+- 📧 **Email**: gilbertrios@hotmail.com Questions about this project? Reach out!
 - 💡 **Collaborate**: Open to discussing infrastructure automation and best practices
 
 ## 📄 License
