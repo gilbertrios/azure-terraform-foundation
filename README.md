@@ -8,8 +8,7 @@
 [![Terraform](https://img.shields.io/badge/Terraform-1.0+-blue.svg)](https://www.terraform.io/)
 [![Azure](https://img.shields.io/badge/Azure-Cloud-blue.svg)](https://azure.microsoft.com/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-green.svg)](https://github.com/features/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
+[![License](https://img.shields.io/github/license/gilbertrios/azure-terraform-foundation)](LICENSE)
 ## 📖 Table of Contents
 
 - [✨ Key Features](#-key-features)
