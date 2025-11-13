@@ -16,6 +16,7 @@ env:
   ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  TERRAFORM_VERSION: '1.13.5'
 
 jobs:
   plan:
@@ -28,6 +29,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: ${{ env.TERRAFORM_VERSION }}
+        terraform_wrapper: false
     
     - name: Terraform Plan
       id: plan
@@ -74,6 +78,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 1.9.0
+        terraform_wrapper: false
     
     - name: Terraform Apply
       working-directory: ./environments/${{ matrix.environment }}
