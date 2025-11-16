@@ -42,7 +42,7 @@ A production-ready Terraform foundation for Azure infrastructure with automated 
 - ✅ Secret management via GitHub Secrets
 - ✅ Resource tagging and governance
 
-## ️ Tech Stack
+## 🛠️ Tech Stack
 
 ### Infrastructure
 - **Terraform** - Infrastructure as Code
